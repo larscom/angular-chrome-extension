@@ -1,6 +1,6 @@
-# Angular Chrome Extension Scaffold Project
+# Angular Chrome Extension Scaffold Project (Angular 7)
 
-This project is an Angular scaffold project for google chrome extensions, see [Github.](https://github.com/larscom/angular-chrome-extension)
+This project is an Angular scaffold project (template) for google chrome extensions, see [Github.](https://github.com/larscom/angular-chrome-extension)
 
 ## How to use/develop
 - clone this repository
@@ -23,3 +23,9 @@ The project is automatically being watched, any changes to the files will recomp
 This will run a production build and will automatically zip it as a extension package in the root folder `./` named: `extension-build.zip`
 
 **NOTE**: Do not forget to update the version number inside `manifest.json`
+
+## Angular folder
+This folder contains the angular source code.
+
+## Chrome folder
+This folder contains the contentpage script for the google chrome extension
