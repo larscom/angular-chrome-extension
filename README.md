@@ -11,7 +11,7 @@ This project is an Angular scaffold project (template) for google chrome extensi
 
 The project is automatically being watched, any changes to the files will recompile the project.
 
-**NOTE**: changes to the contentPage requires you to reload the extension in `chrome://extensions`
+**NOTE**: changes to the contentPage/backgroundPage requires you to reload the extension in `chrome://extensions`
 
 
 ## Build/package for production
