@@ -28,4 +28,4 @@ This will run a production build and will automatically zip it as a extension pa
 This folder contains the angular source code.
 
 ## Chrome folder
-This folder contains the contentpage script for the google chrome extension
+This folder contains the contentPage/backgroundPage script for the google chrome extension
