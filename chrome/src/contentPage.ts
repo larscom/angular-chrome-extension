@@ -7,11 +7,7 @@ chrome.runtime.onMessage.addListener((request, sender, respond) => {
     }
   });
 
-  handler
-    .then(response => sendResponse(respond, response))
-    .catch(error => sendResponse(respond, error));
+  handler.then(message => respond(message)).catch(error => respond(error));
 
   return true;
 });
-
-const sendResponse = (respond: (message: any) => void, response: any) => respond(response);

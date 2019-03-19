@@ -5,7 +5,8 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    contentPage: join(__dirname, 'src/contentPage.ts')
+    contentPage: join(__dirname, 'src/contentPage.ts'),
+    backgroundPage: join(__dirname, 'src/backgroundPage.ts')
   },
   output: {
     path: join(__dirname, '../angular/dist'),

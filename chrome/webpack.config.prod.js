@@ -5,7 +5,8 @@ const { optimize } = require('webpack');
 module.exports = {
   mode: 'production',
   entry: {
-    contentPage: join(__dirname, 'src/contentPage.ts')
+    contentPage: join(__dirname, 'src/contentPage.ts'),
+    backgroundPage: join(__dirname, 'src/backgroundPage.ts')
   },
   output: {
     path: join(__dirname, '../angular/dist'),
