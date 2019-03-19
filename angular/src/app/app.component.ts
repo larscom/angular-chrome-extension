@@ -17,6 +17,9 @@ export class AppComponent {
   onClick(): void {
     chrome.tabs.sendMessage(this._tabId, 'request', message => {
       this.message = message;
+      if (chrome.runtime.lastError) {
+        this.message = `The current page is protected by the browser, try another webpage..`;
+      }
       this._changeDetector.detectChanges();
     });
   }
