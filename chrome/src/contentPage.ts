@@ -1,13 +1,7 @@
-chrome.runtime.onMessage.addListener((request, sender, respond) => {
-  const handler = new Promise((resolve, reject) => {
-    if (request) {
-      resolve('Hi from contentPage :)');
-    } else {
-      reject('request is empty.');
-    }
+chrome.runtime.onConnect.addListener(port => {
+  console.log('connected ', port);
+  port.onMessage.addListener((message, port)=>{
+    port.postMessage("Hi from contentPage :)");
   });
-
-  handler.then(message => respond(message)).catch(error => respond(error));
-
-  return true;
+  
 });
