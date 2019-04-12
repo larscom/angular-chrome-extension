@@ -1,4 +1,6 @@
-import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { TAB_ID } from './tab-id.injector';
 
@@ -9,18 +11,27 @@ import { TAB_ID } from './tab-id.injector';
 })
 // tslint:disable:variable-name
 export class AppComponent {
-  readonly tabId = this._tabId;
-  message: string;
+  private readonly _message = new Subject<string>();
 
-  constructor(@Inject(TAB_ID) private _tabId: number, private _changeDetector: ChangeDetectorRef) {}
+  readonly tabId = this._tabId;
+  readonly message$ = this._message
+    .asObservable()
+    .pipe(tap(() => setTimeout(() => this._changeDetector.detectChanges())));
+
+  constructor(
+    @Inject(TAB_ID) private readonly _tabId: number,
+    private readonly _changeDetector: ChangeDetectorRef
+  ) {}
 
   onClick(): void {
-    chrome.tabs.sendMessage(this._tabId, 'request', message => {
-      this.message = message;
+    chrome.tabs.sendMessage(this.tabId, 'request', message => {
+      this._message.next(message);
+
       if (chrome.runtime.lastError) {
-        this.message = `The current page is protected by the browser, try another webpage..`;
+        this._message.next(
+          `The current page is protected by the browser or try to refresh the current page...`
+        );
       }
-      this._changeDetector.detectChanges();
     });
   }
 }
