@@ -25,13 +25,11 @@ export class AppComponent {
 
   onClick(): void {
     chrome.tabs.sendMessage(this.tabId, 'request', message => {
-      this._message.next(message);
-
-      if (chrome.runtime.lastError) {
-        this._message.next(
-          `The current page is protected by the browser or try to refresh the current page...`
-        );
-      }
+      this._message.next(
+        chrome.runtime.lastError
+          ? `The current page is protected by the browser or try to refresh the current page...`
+          : message
+      );
     });
   }
 }
