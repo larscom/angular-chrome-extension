@@ -1,4 +1,4 @@
-# Angular Chrome Extension Scaffold Project (Angular 7)
+# Angular Chrome Extension Scaffold Project (Angular 8)
 
 This project is an Angular scaffold project (template) for google chrome extensions, see [Github.](https://github.com/larscom/angular-chrome-extension)
 
@@ -29,3 +29,6 @@ This folder contains the angular source code.
 
 ## Chrome folder
 This folder contains the contentPage/backgroundPage script for the google chrome extension
+
+## Additional configuration
+If you decide to use `chrome_url_overrides` for the extension to take over the new tab page. You need to set the `base-href` inside `index.html` to `<base href="#/">` 
