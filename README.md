@@ -2,6 +2,8 @@
 
 This project is an Angular scaffold project (template) for google chrome extensions, see [Github.](https://github.com/larscom/angular-chrome-extension)
 
+![alt text](https://snipboard.io/9PLEzi.jpg "Angular Chrome Extension")
+
 ## How to use/develop
 - clone this repository
 - run `npm install`
