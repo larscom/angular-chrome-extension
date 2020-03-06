@@ -27,7 +27,7 @@ export class AppComponent {
     chrome.tabs.sendMessage(this.tabId, 'request', message => {
       this._message.next(
         chrome.runtime.lastError
-          ? `The current page is protected by the browser or try to refresh the current page...`
+          ? `The current page is protected by the browser, goto: https://www.google.nl and try again.`
           : message
       );
     });

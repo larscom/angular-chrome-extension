@@ -1,4 +1,4 @@
-# Angular Chrome Extension Scaffold Project (Angular 8)
+# Angular Chrome Extension Scaffold Project (Angular 9)
 
 This project is an Angular scaffold project (template) for google chrome extensions, see [Github.](https://github.com/larscom/angular-chrome-extension)
 
