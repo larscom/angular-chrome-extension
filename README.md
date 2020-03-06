@@ -2,9 +2,12 @@
 
 This project is an Angular scaffold project (template) for google chrome extensions, see [Github.](https://github.com/larscom/angular-chrome-extension)
 
-![alt text](https://snipboard.io/9PLEzi.jpg "Angular Chrome Extension")
+![alt text](https://snipboard.io/Isn7i8.jpg 'Angular Chrome Popup')
+![alt text](https://snipboard.io/fwFuQY.jpg 'Angular Chrome Tab')
+![alt text](https://snipboard.io/VQyIpM.jpg 'Angular Chrome Options')
 
 ## How to use/develop
+
 - clone this repository
 - run `npm install`
 - run `npm run watch`
@@ -14,7 +17,6 @@ This project is an Angular scaffold project (template) for google chrome extensi
 The project is automatically being watched, any changes to the files will recompile the project.
 
 **NOTE**: changes to the contentPage/backgroundPage requires you to reload the extension in `chrome://extensions`
-
 
 ## Build/package for production
 
@@ -27,10 +29,15 @@ This will run a production build and will automatically zip it as a extension pa
 **NOTE**: Do not forget to update the version number inside `manifest.json`
 
 ## Angular folder
+
 This folder contains the angular source code.
 
-## Chrome folder
-This folder contains the contentPage/backgroundPage script for the google chrome extension
+The following use cases are supported:
 
-## Using extension as **New Tab**
-If you decide to use `chrome_url_overrides` for the extension to take over the new tab page. You need to set the `base-href` inside `index.html` to `<base href="#/">` 
+- Popup &#10003;
+- New Tab &#10003;
+- Options &#10003;
+
+## Chrome folder
+
+This folder contains the contentPage/backgroundPage script for the google chrome extension

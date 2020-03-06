@@ -6,8 +6,12 @@
   "description": "Angular Chrome Extension scaffold project",
   "permissions": ["tabs"],
   "browser_action": {
-    "default_popup": "index.html",
+    "default_popup": "index.html?popup",
     "default_title": "Angular Chrome Extension"
+  },
+  "options_page": "index.html?options",
+  "chrome_url_overrides": {
+    "newtab": "index.html?tab"
   },
   "content_scripts": [
     {

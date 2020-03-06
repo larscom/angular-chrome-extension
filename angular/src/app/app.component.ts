@@ -9,23 +9,22 @@ import { TAB_ID } from './tab-id.injector';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-// tslint:disable:variable-name
 export class AppComponent {
-  private readonly _message = new Subject<string>();
+  private readonly message = new Subject<string>();
 
-  readonly tabId = this._tabId;
-  readonly message$ = this._message
+  readonly message$ = this.message
     .asObservable()
-    .pipe(tap(() => setTimeout(() => this._changeDetector.detectChanges())));
+    .pipe(tap(() => setTimeout(() => this.changeDetector.detectChanges())));
 
-  constructor(
-    @Inject(TAB_ID) private readonly _tabId: number,
-    private readonly _changeDetector: ChangeDetectorRef
-  ) {}
+  readonly isOptions = String(window.location.href).includes('options');
+  readonly isPopup = String(window.location.href).includes('popup');
+  readonly isTab = String(window.location.href).includes('tab');
+
+  constructor(@Inject(TAB_ID) readonly tabId: number, private readonly changeDetector: ChangeDetectorRef) {}
 
   onClick(): void {
     chrome.tabs.sendMessage(this.tabId, 'request', message => {
-      this._message.next(
+      this.message.next(
         chrome.runtime.lastError
           ? `The current page is protected by the browser, goto: https://www.google.nl and try again.`
           : message
