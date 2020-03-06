@@ -2,9 +2,9 @@
 
 This project is an Angular scaffold project (template) for google chrome extensions, see [Github.](https://github.com/larscom/angular-chrome-extension)
 
-![alt text](https://snipboard.io/Isn7i8.jpg 'Angular Chrome Popup')
-![alt text](https://snipboard.io/fwFuQY.jpg 'Angular Chrome Tab')
-![alt text](https://snipboard.io/VQyIpM.jpg 'Angular Chrome Options')
+![alt text](https://snipboard.io/KToCI3.jpg 'Angular Chrome Popup')
+![alt text](https://snipboard.io/VYfGoD.jpg 'Angular Chrome Tab')
+![alt text](https://snipboard.io/UJ1B9d.jpg 'Angular Chrome Options')
 
 ## How to use/develop
 
