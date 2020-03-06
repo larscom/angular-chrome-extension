@@ -2,10 +2,13 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": ["chrome"]
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "angular/src/**/*.d.ts"
   ]
 }
