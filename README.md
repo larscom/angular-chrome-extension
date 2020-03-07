@@ -1,6 +1,12 @@
 # Angular Chrome Extension Scaffold Project (Angular 9)
 
-This project is an Angular scaffold project (template) for google chrome extensions, see [Github.](https://github.com/larscom/angular-chrome-extension)
+This project is an Angular scaffold project (template) for google chrome extensions.
+
+The following use cases are supported:
+
+- Popup &#10003;
+- New Tab &#10003;
+- Options &#10003;
 
 ![alt text](https://snipboard.io/KToCI3.jpg 'Angular Chrome Popup')
 ![alt text](https://snipboard.io/VYfGoD.jpg 'Angular Chrome Tab')
@@ -31,12 +37,6 @@ This will run a production build and will automatically zip it as a extension pa
 ## Angular folder
 
 This folder contains the angular source code.
-
-The following use cases are supported:
-
-- Popup &#10003;
-- New Tab &#10003;
-- Options &#10003;
 
 ## Chrome folder
 
