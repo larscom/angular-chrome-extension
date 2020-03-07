@@ -9,7 +9,7 @@ This project is an Angular scaffold project (template) for google chrome extensi
 ## How to use/develop
 
 - clone this repository
-- run `npm install`
+- run `npm ci`
 - run `npm run watch`
 - goto: `chrome://extensions` in the browser and enable 'developer mode'
 - press `Load unpacked` and target the folder `angular/dist`
