@@ -2,8 +2,8 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
-import { TAB_ID } from './app/tab-id.injector';
 import { environment } from './environments/environment';
+import { TAB_ID } from './app/providers/tab-id.provider';
 
 chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
   if (environment.production) {
