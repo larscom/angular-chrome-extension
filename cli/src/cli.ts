@@ -1,11 +1,7 @@
 import { inject as Inject, injectable as Injectable } from 'inversify';
-import { exit } from 'process';
 import { askFeatures, askProjectName } from './questions';
 import { ProjectService } from './service/project.service';
 import { LogService } from './service/log.service';
-
-const projectNameMatch = new RegExp(/^[a-z0-9-_]+$/);
-const invalidProjectName = (name: string) => !projectNameMatch.test(String(name));
 
 @Injectable()
 export class CLI {
@@ -21,16 +17,10 @@ export class CLI {
     this.log.showIntro();
 
     const { projectName } = await askProjectName('projectName');
-    if (invalidProjectName(projectName)) {
-      this.log.error(`Invalid project name, must match: ${projectNameMatch.toString()}`);
-      exit(1);
-    }
+    await this.project.validateName(projectName);
 
     const { features } = await askFeatures('features');
-    if (!features.length) {
-      this.log.error('You must select at least 1 feature');
-      exit(1);
-    }
+    this.project.validateFeatures(features);
 
     await this.project.generate(projectName, features);
     await this.project.install(projectName);

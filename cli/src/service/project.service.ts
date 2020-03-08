@@ -11,7 +11,10 @@ const deleteFiles = ['README.md'];
 const deleteDirs = ['.git', 'cli'];
 
 const jsonFormat = { spaces: 2 };
-const getCloneDir = (projectName: string) => `${process.cwd()}/${projectName}`;
+const getProjectDir = (name: string) => `${process.cwd()}/${name}`;
+
+const projectNameMatch = new RegExp(/^[a-z0-9-_]+$/);
+const invalidProjectName = (name: string) => !projectNameMatch.test(String(name));
 
 @Injectable()
 export class ProjectService {
@@ -26,7 +29,7 @@ export class ProjectService {
    * and clean up specific files and folders
    */
   async generate(projectName: string, features: Feature[]): Promise<void> {
-    const cloneDir = getCloneDir(projectName);
+    const cloneDir = getProjectDir(projectName);
     const { repository } = this.pkg;
 
     try {
@@ -48,7 +51,7 @@ export class ProjectService {
    * Install the required dependencies using `npm ci`
    */
   async install(projectName: string): Promise<void> {
-    const cloneDir = getCloneDir(projectName);
+    const cloneDir = getProjectDir(projectName);
     process.chdir(cloneDir);
 
     try {
@@ -60,6 +63,25 @@ export class ProjectService {
     } catch (e) {
       this.log.error(e);
       this.spinner.stop();
+    }
+  }
+
+  async validateName(projectName: string): Promise<void> {
+    if (invalidProjectName(projectName)) {
+      this.log.error(`Invalid project name, must match: ${projectNameMatch.toString()}`);
+      process.exit(1);
+    }
+    const projectExists = await this.existsAsync(projectName);
+    if (projectExists) {
+      this.log.error(`Project '${projectName}' already exists`);
+      process.exit(1);
+    }
+  }
+
+  validateFeatures(features: Feature[]): void {
+    if (!features.length) {
+      this.log.error('You must select at least 1 feature');
+      process.exit(1);
     }
   }
 
@@ -98,6 +120,10 @@ export class ProjectService {
       },
       jsonFormat
     );
+  }
+
+  private existsAsync(projectName: string): Promise<boolean> {
+    return fs.pathExists(getProjectDir(projectName));
   }
 
   private execAsync(command: string): Promise<void> {
