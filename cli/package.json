@@ -19,12 +19,14 @@
   },
   "homepage": "https://github.com/larscom/angular-chrome-extension#readme",
   "scripts": {
-    "build": "npm run copy:readme && npm run copy:package && tsc -p .",
+    "build": "npm run copy:package && tsc -p .",
+    "build:production": "npm run clean && npm run copy:readme && npm run build",
     "start": "npm run build -- --watch",
     "tscov": "tscov --min-coverage 95",
     "tscov:details": "tscov --details",
-    "copy:readme" : "cpx ../README.md .",
-    "copy:package" : "cpx package.json lib"
+    "clean": "rimraf lib && rimraf README.md",
+    "copy:readme": "cpx ../README.md .",
+    "copy:package": "cpx package.json lib"
   },
   "keywords": [
     "ng-chrome",
@@ -60,6 +62,7 @@
     "@types/nodegit": "^0.26.1",
     "@types/ora": "^3.2.0",
     "cpx": "^1.5.0",
+    "rimraf": "^3.0.2",
     "ts-node": "^8.6.2",
     "typedoc": "^0.16.11",
     "typescript": "^3.8.3"
