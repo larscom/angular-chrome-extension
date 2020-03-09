@@ -1,6 +1,6 @@
 # Angular Chrome Extension (Angular 9)
 [![npm-release](https://img.shields.io/npm/v/@larscom/ng-chrome-extension.svg?label=npm%20release)](https://www.npmjs.com/package/@larscom/ng-chrome-extension)
-[![license](https://img.shields.io/npm/l/@larscom/ng-chrome-extension.svg)](https://github.com/larscom/angular-chrome-extension/blob/master/LICENSE)
+[![license](https://img.shields.io/npm/l/@larscom/ng-chrome-extension.svg)](https://github.com/larscom/angular-chrome-extension/blob/master/cli/LICENSE)
 
 This project provides an Angular Template for google chrome extensions.
 
