@@ -12,7 +12,7 @@ The following scenarios are supported:
 - Background Page &#10003;
 - Content Page &#10003;
 
-## How to install (CLI)
+## How to install
 
 ```bash
 npm install -g @larscom/ng-chrome-extension
