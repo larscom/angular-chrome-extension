@@ -25,6 +25,6 @@ export class CLI {
     await this.project.generate(projectName, features);
     await this.project.install(projectName);
 
-    console.log('done!');
+    this.log.showHelp(projectName);
   }
 }

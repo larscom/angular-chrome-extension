@@ -1,22 +1,41 @@
 {
-  "name": "angular-chrome-extension-cli",
+  "name": "@larscom/ng-chrome-extension",
   "shortName": "ng-chrome",
   "version": "1.0.0",
-  "description": "CLI tool to generate angular chrome extensions",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/larscom/angular-chrome-extension.git"
-  },
+  "description": "CLI tool to generate angular chrome extensions on the fly",
   "main": "./lib/main.js",
   "bin": {
     "ng-chrome": "./lib/main.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/larscom/angular-chrome-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/larscom/angular-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/larscom/angular-chrome-extension#readme",
   "scripts": {
-    "build": "cpx package.json lib && tsc -p .",
+    "build": "npm run copy:readme && npm run copy:package && tsc -p .",
     "start": "npm run build -- --watch",
     "tscov": "tscov --min-coverage 95",
-    "tscov:details": "tscov --details"
+    "tscov:details": "tscov --details",
+    "copy:readme" : "cpx ../README.md lib",
+    "copy:package" : "cpx package.json lib"
   },
+  "keywords": [
+    "ng-chrome",
+    "ng",
+    "angular",
+    "chrome",
+    "extension",
+    "google",
+    "manifest",
+    "rxjs"
+  ],
   "author": "Lars Kniep",
   "license": "MIT",
   "dependencies": {
@@ -27,7 +46,6 @@
     "inversify": "^5.0.1",
     "kleur": "^3.0.3",
     "nodegit": "^0.26.5",
-    "npm": "^6.14.2",
     "ora": "^4.0.3",
     "reflect-metadata": "^0.1.13",
     "tslib": "^1.11.1"
@@ -40,7 +58,6 @@
     "@types/inquirer": "^6.5.0",
     "@types/node": "^13.9.0",
     "@types/nodegit": "^0.26.1",
-    "@types/npm": "^2.0.31",
     "@types/ora": "^3.2.0",
     "cpx": "^1.5.0",
     "ts-node": "^8.6.2",

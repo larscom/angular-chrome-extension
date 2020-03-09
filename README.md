@@ -1,21 +1,34 @@
-# Angular Chrome Extension Scaffold Project (Angular 9)
+# Angular Chrome Extension (Angular 9)
+[![npm-release](https://img.shields.io/npm/v/@larscom/ng-chrome-extension.svg?label=npm%20release)](https://www.npmjs.com/package/@larscom/ng-chrome-extension)
+[![license](https://img.shields.io/npm/l/@larscom/ng-chrome-extension.svg)](https://github.com/larscom/angular-chrome-extension/blob/master/LICENSE)
 
-This project is an Angular scaffold project (template) for google chrome extensions.
+This project provides an Angular Template for google chrome extensions.
 
-The following use cases are supported:
+The following scenarios are supported:
 
 - Popup &#10003;
 - New Tab &#10003;
 - Options &#10003;
+- Background Page &#10003;
+- Content Page &#10003;
 
-![alt text](https://snipboard.io/KToCI3.jpg 'Angular Chrome Popup')
-![alt text](https://snipboard.io/VYfGoD.jpg 'Angular Chrome Tab')
-![alt text](https://snipboard.io/UJ1B9d.jpg 'Angular Chrome Options')
+## How to install (CLI)
+
+```bash
+npm install -g @larscom/ng-chrome-extension
+```
+
+## Start creating a new project
+
+```bash
+ng-chrome
+```
+
+![alt text](https://snipboard.io/2eBxET.jpg 'ng-chrome CLI')
 
 ## How to use/develop
 
-- clone this repository
-- run `npm ci`
+- change directory to your newly created project
 - run `npm run watch`
 - goto: `chrome://extensions` in the browser and enable 'developer mode'
 - press `Load unpacked` and target the folder `angular/dist`
@@ -23,6 +36,9 @@ The following use cases are supported:
 The project is automatically being watched, any changes to the files will recompile the project.
 
 **NOTE**: changes to the contentPage/backgroundPage requires you to reload the extension in `chrome://extensions`
+
+![alt text](https://snipboard.io/KToCI3.jpg 'Angular Chrome Popup')
+![alt text](https://snipboard.io/VYfGoD.jpg 'Angular Chrome Tab')
 
 ## Build/package for production
 

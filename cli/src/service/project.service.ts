@@ -33,14 +33,14 @@ export class ProjectService {
     const { repository } = this.pkg;
 
     try {
-      this.spinner.start('creating extension...');
+      this.spinner.start('creating new extension...');
 
       await git.clone(repository.url, cloneDir);
       await this.cleanDir(cloneDir);
       await this.writePackageJson(cloneDir, projectName);
       await this.writeManifestJson(cloneDir, projectName, features);
 
-      this.spinner.stop(`done! created extension in: ${cloneDir}`);
+      this.spinner.stop(`done! created new angular chrome extension in: ${cloneDir}`);
     } catch (e) {
       this.log.error(e);
       this.spinner.stop();
