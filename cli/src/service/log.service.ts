@@ -36,7 +36,7 @@ export class LogService {
     console.log(`You can now change directory to ${yellow(projectName)} and type the following commands:`);
 
     console.log();
-    console.log(`   ${cyan('npm run watch')}`);
+    console.log(`   ${cyan('npm start')}`);
     console.log('       The project is automatically being watched/build');
     console.log(`       Go to ${yellow('chrome://extensions')} in the browser and enable '${bold('developer mode')}'`);
     console.log(`       Press ${yellow('Load unpacked')} and target the folder '${bold('angular/dist')}'`);
