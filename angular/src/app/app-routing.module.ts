@@ -1,10 +1,26 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'popup',
+    pathMatch: 'full',
+    loadChildren: () => import('./modules/popup/popup.module').then(m => m.PopupModule)
+  },
+  {
+    path: 'tab',
+    pathMatch: 'full',
+    loadChildren: () => import('./modules/tab/tab.module').then(m => m.TabModule)
+  },
+  {
+    path: 'options',
+    pathMatch: 'full',
+    loadChildren: () => import('./modules/options/options.module').then(m => m.OptionsModule)
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
