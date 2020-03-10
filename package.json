@@ -5,6 +5,7 @@
   "description": "Angular Chrome Extension Template",
   "scripts": {
     "ng": "ng",
+    "start" : "npm run watch",
     "build:angular": "ng build",
     "build:angular-production": "ng build --prod",
     "watch:angular": "ng build --watch --delete-output-path false",
