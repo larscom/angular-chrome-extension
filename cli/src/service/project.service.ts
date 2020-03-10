@@ -42,8 +42,9 @@ export class ProjectService {
 
       this.spinner.stop(`done! created new angular chrome extension in: ${cloneDir}`);
     } catch (e) {
-      this.log.error(e);
       this.spinner.stop();
+      this.log.error(e);
+      process.exit(1);
     }
   }
 
@@ -61,8 +62,9 @@ export class ProjectService {
 
       this.spinner.stop('done! installed dependencies');
     } catch (e) {
-      this.log.error(e);
       this.spinner.stop();
+      this.log.error(e.message, e);
+      process.exit(1);
     }
   }
 
