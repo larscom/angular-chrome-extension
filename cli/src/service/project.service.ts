@@ -2,13 +2,13 @@ import { exec } from 'child_process';
 import fs from 'fs-extra';
 import { inject as Inject, injectable as Injectable } from 'inversify';
 import { Clone as git } from 'nodegit';
+import { Feature } from '../model/feature';
 import { Package } from '../model/package';
 import { LogService } from './log.service';
 import { SpinnerService } from './spinner.service';
-import { Feature } from '../model/feature';
 
 const deleteFiles = ['README.md'];
-const deleteDirs = ['.git', 'cli'];
+const deleteDirs = ['.vscode', '.git', 'cli'];
 
 const jsonFormat = { spaces: 2 };
 const getProjectDir = (name: string) => `${process.cwd()}/${name}`;
@@ -96,26 +96,28 @@ export class ProjectService {
 
   private async writeManifestJson(cloneDir: string, projectName: string, features: Feature[]): Promise<void> {
     const manifestJson = `${cloneDir}/angular/src/manifest.json`;
-    const currentManifest = require(manifestJson);
+    const currentManifestJson = require(manifestJson);
 
     const manifest = {
       name: projectName,
       short_name: projectName,
       description: `Generated with ${this.pkg.name}`,
-      browser_action: features.includes(Feature.POPUP) ? currentManifest.browser_action : undefined,
-      options_page: features.includes(Feature.OPTIONS) ? currentManifest.options_page : undefined,
-      chrome_url_overrides: features.includes(Feature.TAB) ? currentManifest.chrome_url_overrides : undefined
+      browser_action: features.includes(Feature.POPUP) ? currentManifestJson.browser_action : undefined,
+      options_page: features.includes(Feature.OPTIONS) ? currentManifestJson.options_page : undefined,
+      chrome_url_overrides: features.includes(Feature.TAB) ? currentManifestJson.chrome_url_overrides : undefined
     };
 
-    return fs.writeJson(manifestJson, { ...currentManifest, ...manifest }, jsonFormat);
+    return fs.writeJson(manifestJson, { ...currentManifestJson, ...manifest }, jsonFormat);
   }
 
   private async writePackageJson(cloneDir: string, projectName: string): Promise<void> {
     const packageJson = `${cloneDir}/package.json`;
+    const currentPackageJson = require(packageJson);
+
     return fs.writeJson(
       packageJson,
       {
-        ...require(packageJson),
+        ...currentPackageJson,
         name: projectName,
         description: `Generated with ${this.pkg.name}`,
         author: undefined

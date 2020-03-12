@@ -8,6 +8,7 @@
     "outDir": "lib",
     "rootDir": "src",
     "strict": true,
+    "sourceMap": true,
     "types": ["node", "inquirer", "figlet", "fs-extra", "reflect-metadata"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
