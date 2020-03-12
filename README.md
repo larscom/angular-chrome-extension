@@ -53,7 +53,9 @@ This will run a production build and will automatically zip it as a extension pa
 ## Angular folder
 
 This folder contains the angular source code.
+Each feature (popup,options,tab) lives inside its own module and gets lazily loaded.
+see: `./angular/src/modules`
 
 ## Chrome folder
 
-This folder contains the contentPage/backgroundPage script for the google chrome extension
+This folder contains the content page/background page scripts.
