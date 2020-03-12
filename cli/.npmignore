@@ -1,4 +1,6 @@
 src/
+test/
 node_modules/
 .gitignore
 tsconfig.json
+lib/**/*.map
