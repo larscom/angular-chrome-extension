@@ -54,7 +54,8 @@ This will run a production build and will automatically zip it as a extension pa
 
 This folder contains the angular source code.
 Each feature (popup,options,tab) lives inside its own module and gets lazily loaded.
-see: `./angular/src/modules`
+
+see: `./angular/src/app/modules`
 
 ## Chrome folder
 
