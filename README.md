@@ -37,7 +37,7 @@ ng-chrome
 
 The project is automatically being watched, any changes to the files will recompile the project.
 
-**NOTE**: changes to the `content page` and `background page` scripts requires you to reload the extension in `chrome://extensions`
+**NOTE**: changes to the **content page** and **background page** scripts requires you to reload the extension in `chrome://extensions`
 
 ![alt text](https://snipboard.io/KToCI3.jpg 'Angular Chrome Popup')
 ![alt text](https://snipboard.io/VYfGoD.jpg 'Angular Chrome Tab')
