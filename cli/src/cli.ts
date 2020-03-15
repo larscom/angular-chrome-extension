@@ -2,32 +2,27 @@ import { inject as Inject, injectable as Injectable } from 'inversify';
 import { askFeatures, askProjectName } from './questions';
 import { ProjectService } from './service/project.service';
 import { LogService } from './service/log.service';
-import * as ts from 'typescript';
+import ts from 'typescript';
 import fs from 'fs-extra';
+import { Feature } from './model/feature';
 
-function findNodes(node: ts.Node, nodes: ts.Node[] = []): ts.Node[] {
-  if (ts.SyntaxKind[node.kind] === 'ObjectLiteralExpression') {
-    nodes.push(node);
+const findNodes = (node: ts.Node, features: Feature[], nodes: ts.Node[] = []): ts.Node[] => {
+  if (node.kind === ts.SyntaxKind.ObjectLiteralExpression) {
+    const children = node.getChildren().map(child => child.getText());
+    const hasFeature = features.some(feature => children.some(child => child.includes(String(feature))));
+
+    if (hasFeature) {
+      ts.createObjectLiteral();
+      nodes.push(node);
+    }
   }
 
-  for (let child of node.getChildren()) {
-    findNodes(child, nodes);
+  for (const child of node.getChildren()) {
+    findNodes(child, features, nodes);
   }
 
   return nodes;
-}
-
-function showTree(node: ts.Node, indent: string = '    '): void {
-  console.log(indent + ts.SyntaxKind[node.kind]);
-
-  if (node.getChildCount() === 0) {
-    console.log(indent + '    Text: ' + node.getText());
-  }
-
-  for (let child of node.getChildren()) {
-    showTree(child, indent + '    ');
-  }
-}
+};
 
 @Injectable()
 export class CLI {
@@ -59,17 +54,18 @@ export class CLI {
     const fileName = 'app-routing.module.ts';
     const buffer = fs.readFileSync(`/home/lars/Projects/angular-chrome-extension/cli/test/angular/src/app/${fileName}`);
     const source = ts.createSourceFile(fileName, buffer.toString('utf-8'), ts.ScriptTarget.Latest, true);
+    const nodesToRemove = findNodes(source, [Feature.POPUP, Feature.OPTIONS]);
+    const diff = Object.keys(Feature).length - nodesToRemove.length;
+    const src = source.getFullText();
 
-    const nodes = findNodes(source).filter(node => node.getText().includes('options'));
-
-    const test = source.getFullText().substring(nodes[0].pos, nodes[0].end);
-    const test2 = source.getFullText().replace(test, '');
-
-    showTree(source);
+    const testresult = nodesToRemove
+      .map(node => src.substring(node.pos, node.end))
+      .reduce((acc, next) => acc.replace(next, ''), src)
+      .replace(',,', ',');
 
     compiler.writeFile(
       `/home/lars/Projects/angular-chrome-extension/cli/test/angular/src/app/testing-${fileName}`,
-      test2,
+      diff === 1 ? testresult.replace('},', '}') : testresult,
       false
     );
   }
