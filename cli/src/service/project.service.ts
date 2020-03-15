@@ -1,5 +1,6 @@
 import { exec } from 'child_process';
 import fs from 'fs-extra';
+import ts from 'typescript';
 import { inject as Inject, injectable as Injectable } from 'inversify';
 import { Clone as git } from 'nodegit';
 import { Feature } from '../model/feature';
@@ -16,6 +17,23 @@ const getProjectDir = (name: string) => `${process.cwd()}/${name}`;
 const projectNameMatch = new RegExp(/^[a-z0-9-_]+$/);
 const invalidProjectName = (name: string) => !projectNameMatch.test(String(name));
 
+const findNodes = (node: ts.Node, features: Feature[], nodes: ts.Node[] = []): ts.Node[] => {
+  if (node.kind === ts.SyntaxKind.ObjectLiteralExpression) {
+    const children = node.getChildren().map(child => child.getText());
+    const hasFeature = features.some(feature => children.some(child => child.includes(String(feature))));
+
+    if (hasFeature) {
+      nodes.push(node);
+    }
+  }
+
+  for (const child of node.getChildren()) {
+    findNodes(child, features, nodes);
+  }
+
+  return nodes;
+};
+
 @Injectable()
 export class ProjectService {
   constructor(
@@ -28,17 +46,20 @@ export class ProjectService {
    * Clone https://github.com/larscom/angular-chrome-extension
    * and clean up specific files and folders
    */
-  async generate(projectName: string, features: Feature[]): Promise<void> {
-    const cloneDir = getProjectDir(projectName);
+  async create(projectName: string, chosenFeatures: Feature[]): Promise<void> {
     const { repository } = this.pkg;
+
+    const cloneDir = getProjectDir(projectName);
+    const featuresToRemove = Object.values(Feature).filter(it => !chosenFeatures.includes(it));
 
     try {
       this.spinner.start('creating new extension...');
 
       await git.clone(repository.url, cloneDir);
-      await this.cleanDir(cloneDir);
+      await this.cleanDir(cloneDir, featuresToRemove);
       await this.writePackageJson(cloneDir, projectName);
-      await this.writeManifestJson(cloneDir, projectName, features);
+      await this.writeManifestJson(cloneDir, projectName, chosenFeatures);
+      this.writeAngularRoutingModule(cloneDir, featuresToRemove);
 
       this.spinner.stop(`done! created new angular chrome extension in: ${cloneDir}`);
     } catch (e) {
@@ -87,14 +108,40 @@ export class ProjectService {
     }
   }
 
-  private async cleanDir(cloneDir: string): Promise<[Promise<void>[], Promise<void>[]]> {
+  private writeAngularRoutingModule(cloneDir: string, featuresToRemove: Feature[]): void {
+    if (!featuresToRemove.length) {
+      return;
+    }
+
+    const fileName = 'app-routing.module.ts';
+    const routingFile = `${cloneDir}/angular/src/app/${fileName}`;
+
+    const compiler = ts.createCompilerHost(require(`${cloneDir}/angular/tsconfig.json`));
+    const buffer = fs.readFileSync(routingFile);
+    const source = ts.createSourceFile(fileName, buffer.toString('utf-8'), ts.ScriptTarget.Latest, true);
+    const nodesToRemove = findNodes(source, featuresToRemove);
+
+    const sourceContent = source.getFullText();
+    const newSource = nodesToRemove
+      .map(node => sourceContent.substring(node.pos, node.end))
+      .reduce((acc, curr) => acc.replace(curr, ''), sourceContent)
+      .replace(',,', ',');
+
+    compiler.writeFile(routingFile, newSource, false);
+  }
+
+  private async cleanDir(
+    cloneDir: string,
+    featuresToRemove: Feature[]
+  ): Promise<[Promise<void>[], Promise<void>[], Promise<void>[]]> {
     return Promise.all([
       deleteDirs.map(dir => fs.remove(`${cloneDir}/${dir}`)),
-      deleteFiles.map(file => fs.unlink(`${cloneDir}/${file}`))
+      deleteFiles.map(file => fs.unlink(`${cloneDir}/${file}`)),
+      featuresToRemove.map(feature => fs.remove(`${cloneDir}/angular/src/app/modules/${feature}`))
     ]);
   }
 
-  private async writeManifestJson(cloneDir: string, projectName: string, features: Feature[]): Promise<void> {
+  private async writeManifestJson(cloneDir: string, projectName: string, chosenFeatures: Feature[]): Promise<void> {
     const manifestJson = `${cloneDir}/angular/src/manifest.json`;
     const currentManifestJson = require(manifestJson);
 
@@ -102,9 +149,9 @@ export class ProjectService {
       name: projectName,
       short_name: projectName,
       description: `Generated with ${this.pkg.name}`,
-      browser_action: features.includes(Feature.POPUP) ? currentManifestJson.browser_action : undefined,
-      options_page: features.includes(Feature.OPTIONS) ? currentManifestJson.options_page : undefined,
-      chrome_url_overrides: features.includes(Feature.TAB) ? currentManifestJson.chrome_url_overrides : undefined
+      browser_action: chosenFeatures.includes(Feature.POPUP) ? currentManifestJson.browser_action : undefined,
+      options_page: chosenFeatures.includes(Feature.OPTIONS) ? currentManifestJson.options_page : undefined,
+      chrome_url_overrides: chosenFeatures.includes(Feature.TAB) ? currentManifestJson.chrome_url_overrides : undefined
     };
 
     return fs.writeJson(manifestJson, { ...currentManifestJson, ...manifest }, jsonFormat);
