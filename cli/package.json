@@ -1,7 +1,7 @@
 {
   "name": "@larscom/ng-chrome-extension",
   "shortName": "ng-chrome",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "CLI tool to generate angular chrome extensions",
   "main": "./lib/main.js",
   "bin": {
@@ -22,8 +22,6 @@
     "build": "npm run copy:package && tsc -p .",
     "build:production": "npm run clean && npm run copy:readme && npm run build",
     "start": "npm run build -- --watch",
-    "tscov": "tscov --min-coverage 95",
-    "tscov:details": "tscov --details",
     "clean": "rimraf lib && rimraf README.md",
     "copy:readme": "cpx ../README.md .",
     "copy:package": "cpx package.json lib"
@@ -50,10 +48,11 @@
     "nodegit": "^0.26.5",
     "ora": "^4.0.3",
     "reflect-metadata": "^0.1.13",
-    "tslib": "^1.11.1"
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
-    "@liftr/tscov": "^1.4.5",
+    "@larscom/cpx": "^2.0.0",
     "@types/clear": "^0.1.0",
     "@types/figlet": "^1.2.0",
     "@types/fs-extra": "^8.1.0",
@@ -61,10 +60,7 @@
     "@types/node": "^13.9.0",
     "@types/nodegit": "^0.26.1",
     "@types/ora": "^3.2.0",
-    "cpx": "^1.5.0",
     "rimraf": "^3.0.2",
-    "ts-node": "^8.6.2",
-    "typedoc": "^0.16.11",
-    "typescript": "^3.8.3"
+    "ts-node": "^8.6.2"
   }
 }

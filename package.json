@@ -16,7 +16,8 @@
     "build:production": "npm run build:angular-production && npm run build:chrome-production && npm run pack",
     "watch": "npm run clean && npm-run-all --parallel watch:*",
     "clean": "rimraf angular/dist",
-    "pack": "cd angular/dist && bestzip ../../extension-build.zip *"
+    "pack": "cd angular/dist && bestzip ../../extension-build.zip *",
+    "postinstall": "mkdir -p cli/.git"
   },
   "private": true,
   "dependencies": {
