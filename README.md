@@ -1,4 +1,4 @@
-# Angular Chrome Extension (ng-chrome)
+# Angular Chrome Extension (ng-chrome-extension)
 
 [![npm-release](https://img.shields.io/npm/v/@larscom/ng-chrome-extension.svg?label=npm%20release)](https://www.npmjs.com/package/@larscom/ng-chrome-extension)
 [![license](https://img.shields.io/npm/l/@larscom/ng-chrome-extension)](https://github.com/larscom/angular-chrome-extension/blob/master/cli/LICENSE)
