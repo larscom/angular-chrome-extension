@@ -1,6 +1,7 @@
 # Angular Chrome Extension Scaffold
 
 [![npm-release](https://img.shields.io/npm/v/@larscom/ng-chrome-extension.svg?label=npm)](https://www.npmjs.com/package/@larscom/ng-chrome-extension)
+[![@larscom/ng-chrome-extension](https://github.com/larscom/ng-chrome-extension/workflows/@larscom/ng-chrome-extension/badge.svg?branch=master)](https://github.com/larscom/ng-chrome-extension)
 [![license](https://img.shields.io/npm/l/@larscom/ng-chrome-extension)](https://github.com/larscom/ng-chrome-extension/blob/master/LICENSE)
 ![npm](https://img.shields.io/npm/dw/@larscom/ng-chrome-extension)
 
@@ -16,8 +17,8 @@ The following scenarios/options are supported:
 
 ## Usage
 
-This project is only a scaffold, you can either clone this repository or use the CLI (recommended) tool to generate a new project.
+This project is only a scaffold, you can either clone this repository or use the CLI tool to generate a new project.
 
-## Use the CLI
+## Use the CLI (recommended)
 
-The `npm package` is available here: https://github.com/larscom/ng-chrome-extension#readme
+More information here: https://github.com/larscom/ng-chrome-extension#readme
