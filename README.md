@@ -17,8 +17,6 @@ The following scenarios/options are supported:
 
 ## Usage
 
-This project is only a scaffold, you can either clone this repository or use the CLI tool to generate a new project.
+This project is only a scaffold, use the CLI tool to generate a new project.
 
-## Use the CLI (recommended)
-
-More information here: https://github.com/larscom/ng-chrome-extension#readme
+See: https://github.com/larscom/ng-chrome-extension
