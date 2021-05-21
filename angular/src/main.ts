@@ -10,8 +10,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
     enableProdMode();
   }
 
-  const tab = [...tabs].pop();
-  const { id: tabId } = tab;
+  const { id: tabId } = [...tabs].pop();
 
   // provides the current Tab ID so you can send messages to the content page
   platformBrowserDynamic([{ provide: TAB_ID, useValue: tabId }])

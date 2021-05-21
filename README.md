@@ -15,6 +15,13 @@ The following scenarios/options are supported:
 - Background Page &#10003;
 - Content Page &#10003;
 
+## Debugging
+Run: `npm start`
+
+Go to: Developer tools (inspect popup) => Sources => webpack
+
+You can find your source files (TypeScript) over there.
+
 ## Usage
 
 This project is only a scaffold, use the CLI tool to generate a new project.
