@@ -1,11 +1,11 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Angular Chrome Extension",
   "short_name": "Angular Chrome Extension",
   "version": "1.0.0",
   "description": "Angular Chrome Extension scaffold project",
   "permissions": ["tabs"],
-  "browser_action": {
+  "action": {
     "default_popup": "index.html?#/popup",
     "default_title": "Angular Chrome Extension"
   },
@@ -20,8 +20,7 @@
     }
   ],
   "background": {
-    "scripts": ["backgroundPage.js"],
-    "persistent": false
+    "service_worker": "serviceWorker.js"
   },
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": { "extension_pages" : "script-src 'self'; object-src 'self'" }
 }
