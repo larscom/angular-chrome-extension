@@ -5,6 +5,7 @@ import { OptionsComponent } from './pages/options/options.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: OptionsComponent
   }
 ];

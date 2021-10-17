@@ -5,6 +5,7 @@ import { PopupComponent } from './pages/popup/popup.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: PopupComponent
   }
 ];

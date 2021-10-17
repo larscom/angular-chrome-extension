@@ -5,6 +5,7 @@ import { TabComponent } from './pages/tab/tab.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: TabComponent
   }
 ];
