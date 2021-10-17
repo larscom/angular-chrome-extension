@@ -21,11 +21,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new CheckerPlugin(),
-    new optimize.AggressiveMergingPlugin(),
-    new optimize.OccurrenceOrderPlugin()
-  ],
+  plugins: [new CheckerPlugin(), new optimize.AggressiveMergingPlugin()],
   resolve: {
     extensions: ['.ts', '.js']
   }
