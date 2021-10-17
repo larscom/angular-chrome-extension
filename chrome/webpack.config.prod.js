@@ -12,15 +12,6 @@ module.exports = {
     path: join(__dirname, '../angular/dist'),
     filename: '[name].js'
   },
-  module: {
-    rules: [
-      {
-        exclude: /node_modules/,
-        test: /\.ts?$/,
-        use: 'awesome-typescript-loader?{configFileName: "chrome/tsconfig.json"}'
-      }
-    ]
-  },
   plugins: [new CheckerPlugin(), new optimize.AggressiveMergingPlugin()],
   resolve: {
     extensions: ['.ts', '.js']
