@@ -8,7 +8,7 @@
     "start": "npm run watch",
     "build:angular": "ng build --configuration development",
     "build:angular-production": "ng build",
-    "watch:angular": "ng build --configuration development --delete-output-path false --source-map=true --plugin ~angular/sourcemaps-plugin.js",
+    "watch:angular": "ng build --watch --configuration development --delete-output-path false --source-map=true --plugin ~angular/sourcemaps-plugin.js",
     "build:chrome": "webpack --config chrome/webpack.config.js",
     "build:chrome-production": "webpack --config chrome/webpack.config.prod.js",
     "watch:chrome": "webpack --config chrome/webpack.config.js -w",
