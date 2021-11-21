@@ -2,6 +2,7 @@
 
 # compiled output
 .firebase/
+.angular/
 dist
 # dependencies
 node_modules
