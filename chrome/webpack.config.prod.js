@@ -8,6 +8,15 @@ module.exports = {
     contentPage: join(__dirname, 'src/contentPage.ts'),
     serviceWorker: join(__dirname, 'src/serviceWorker.ts')
   },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
   output: {
     path: join(__dirname, '../angular/dist'),
     filename: '[name].js'
