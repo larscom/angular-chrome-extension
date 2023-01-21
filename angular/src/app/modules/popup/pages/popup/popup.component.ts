@@ -14,7 +14,7 @@ export class PopupComponent {
   constructor(@Inject(TAB_ID) readonly tabId: number) {}
 
   async onClick(): Promise<void> {
-    this.message = await bindCallback<string>(chrome.tabs.sendMessage.bind(this, this.tabId, 'request'))()
+    this.message = await bindCallback<any, any>(chrome.tabs.sendMessage.bind(this, this.tabId, 'request'))()
       .pipe(
         map(msg =>
           chrome.runtime.lastError
