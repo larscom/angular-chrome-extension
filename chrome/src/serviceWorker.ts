@@ -1,1 +1,1 @@
-console.log('serviceWorker script loaded');
+console.log('serviceWorker script loaded')

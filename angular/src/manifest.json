@@ -4,12 +4,15 @@
   "short_name": "Angular Chrome Extension",
   "version": "1.0.0",
   "description": "Angular Chrome Extension scaffold project",
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "sidePanel"],
   "action": {
     "default_popup": "index.html?#/popup",
     "default_title": "Angular Chrome Extension"
   },
   "options_page": "index.html?#/options",
+  "side_panel": {
+    "default_path": "side_panel.html"
+  },
   "chrome_url_overrides": {
     "newtab": "index.html?#/tab"
   },
@@ -22,5 +25,5 @@
   "background": {
     "service_worker": "serviceWorker.js"
   },
-  "content_security_policy": { "extension_pages" : "script-src 'self'; object-src 'self'" }
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'self'" }
 }

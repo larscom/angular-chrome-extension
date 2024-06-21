@@ -1,13 +1,13 @@
-chrome.runtime.onMessage.addListener((request, sender, respond) => {
-  const handler = new Promise((resolve, reject) => {
+chrome.runtime.onMessage.addListener((request, _, cb) => {
+  const handler = new Promise<string>((resolve, reject) => {
     if (request) {
-      resolve(`Hi from contentPage! You are currently on: ${window.location.href}`);
+      resolve(`Hi from contentPage! You are currently on: ${window.location.href}`)
     } else {
-      reject('request is empty.');
+      reject('request is empty.')
     }
-  });
+  })
 
-  handler.then(message => respond(message)).catch(error => respond(error));
+  handler.then((message) => cb(message)).catch((error) => cb(error))
 
-  return true;
-});
+  return true
+})

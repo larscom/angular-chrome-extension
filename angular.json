@@ -23,17 +23,17 @@
             "outputPath": "angular/dist",
             "index": "angular/src/index.html",
             "main": "angular/src/main.ts",
-            "polyfills": "angular/src/polyfills.ts",
+            "polyfills": [],
             "tsConfig": "angular/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "angular/src/favicon.ico",
               "angular/src/assets",
-              "angular/src/manifest.json"
+              "angular/src/manifest.json",
+              "angular/src/side_panel.html",
+              "angular/src/side_panel.js"
             ],
-            "styles": [
-              "angular/src/styles.scss"
-            ],
+            "styles": ["angular/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -42,7 +42,7 @@
                 "styles": {
                   "inlineCritical": false
                 }
-              },              
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -53,12 +53,6 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "angular/src/environments/environment.ts",
-                  "with": "angular/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -75,7 +69,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",    
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "angular-chrome-extension:build:production"
