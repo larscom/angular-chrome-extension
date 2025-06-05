@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "type": "module",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "rollup": "^4.22.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "rollup": "^4.41.1",
     "rollup-plugin-terser": "^7.0.2",
-    "@types/chrome": "^0.0.268",
-    "@types/web": "^0.0.149",
-    "typescript": "5.4.5"
+    "@types/chrome": "^0.0.326",
+    "@types/web": "^0.0.239",
+    "typescript": "5.8.3"
   }
 }
