@@ -3,11 +3,10 @@ import { Component, Inject, signal } from '@angular/core'
 import { TAB_ID } from 'src/app/app.config'
 
 @Component({
-  selector: 'app-popup',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: 'popup.component.html',
-  styleUrls: ['popup.component.scss']
+    selector: 'app-popup',
+    imports: [CommonModule],
+    templateUrl: 'popup.component.html',
+    styleUrls: ['popup.component.scss']
 })
 export class PopupComponent {
   message = signal('')
