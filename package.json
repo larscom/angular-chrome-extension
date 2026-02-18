@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^20.0.1",
-    "@angular/cli": "20.0.1",
+    "@angular/cli": "20.3.16",
     "@angular/compiler-cli": "20.0.1",
     "@types/chrome": "0.0.326",
     "bestzip": "2.2.1",
